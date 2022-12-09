@@ -68,7 +68,7 @@ chart_panel <- tabPanel(
   titlePanel("CO2 emission over the years"),
   chart_sidebar_content,
   chart_main_content,
-  p("This chart displays the greenhouse gas emission over the years, based on the country. This is an
+  p("This chart displays different greenhouse gas emissions over the years, based on the country. This is an
     important graphic because it allows for different countries and their citizens to be informed
     on the impact that their society is having on the world in comparison to other areas of the world.")
 )
