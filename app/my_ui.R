@@ -29,11 +29,56 @@ introduction_page <- tabPanel(
     cars and vehicles have on the Earth. The average concentration of gas co2 in the world over the years is:"),
   textOutput("variable_3")
 )
+min_co2_per_year <- co2_per_year %>% 
+  filter(year == min(year, na.rm = TRUE)) %>% 
+  filter(country == "World") %>% 
+  pull(year)
+
+max_co2_per_year <- co2_per_year %>% 
+  filter(year == max(year, na.rm = TRUE)) %>% 
+  filter(country == "World") %>% 
+  pull(year)
+
+chart_sidebar_content <- sidebarPanel(
+  input_text <- textInput(
+    inputId = "select_country",
+    label = "Select a country to see CO2 emission",
+    value = "World"
+  ),
+  input_year <- sliderInput("select_year", "Year Range:",
+              min = min_co2_per_year, max = max_co2_per_year,
+              value = c(min_co2_per_year,max_co2_per_year),
+              sep =""
+              ),
+  input_gas <-  selectInput(
+    inputId = "select_gas",
+    label = "Select Gas Emission",
+    choices = list("CO2" = "co2", "Nitrous Oxide" = "nitrous_oxide"),
+    selected = "co2"
+  )
+)
+
+?sliderInput()
+chart_main_content <- mainPanel(
+  plotlyOutput("plot")
+)
+
+chart_panel <- tabPanel(
+  "CO2 emission",
+  titlePanel("CO2 emission over the years"),
+  chart_sidebar_content,
+  chart_main_content,
+  p("This chart displays the greenhouse gas emission over the years, based on the country. This is an
+    important graphic because it allows for different countries and their citizens to be informed
+    on the impact that their society is having on the world in comparison to other areas of the world.")
+)
+
 
 ui <- navbarPage(
   theme = shinytheme("darkly"),
   "A5",
-  introduction_page
+  introduction_page,
+  chart_panel
 )
 
 ?textOutput()
