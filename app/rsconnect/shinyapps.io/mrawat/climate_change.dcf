@@ -5,9 +5,9 @@ account: mrawat
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7852560
-bundleId: 6613162
+bundleId: 6613988
 url: https://mrawat.shinyapps.io/climate_change/
-when: 1670543803.35891
-lastSyncTime: 1670543803.35892
+when: 1670559062.11879
+lastSyncTime: 1670559062.1188
 asMultiple: FALSE
 asStatic: FALSE
